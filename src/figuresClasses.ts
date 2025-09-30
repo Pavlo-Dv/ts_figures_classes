@@ -40,7 +40,7 @@ export class Circle implements Figure {
     public color: Color,
     public radius: number,
   ) {
-    if (radius < 0) {
+    if (radius <= 0) {
       throw new Error(`Radius must be > 0. Got: ${radius}`);
     }
   }
@@ -61,12 +61,14 @@ export class Rectangle implements Figure {
     public height: number,
   ) {
     if (width <= 0 || height <= 0) {
-      throw new Error(`Sides must be positive and more than 0.`);
+      throw new Error(`Width and height must be > 0. Got: ${width}, ${height}`);
     }
   }
 
   getArea(): number {
-    return this.width * this.height;
+    const area = this.width * this.height;
+
+    return Math.floor(area * 100) / 100;
   }
 }
 
